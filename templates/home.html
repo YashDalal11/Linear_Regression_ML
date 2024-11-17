@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fire Weather Data Input Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        form {
+            width: 300px;
+            margin: 0 auto;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+        }
+        button {
+            margin-top: 15px;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h2 style="text-align: center;">Fire Weather Data Input Form</h2>
+    <form action="{{ url_for('predict_datapoint')}}" method="post">
+        <label for="temperature">Temperature (°C):</label>
+        <input type="text" step="0.1" id="temperature" name="Temperature" required>
+
+        <label for="rh">Relative Humidity (%):</label>
+        <input type="text" step="0.1" id="rh" name="RH" required>
+
+        <label for="ws">Wind Speed (km/h):</label>
+        <input type="text" step="0.1" id="ws" name="Ws" required>
+
+        <label for="rain">Rain (mm):</label>
+        <input type="text" step="0.1" id="rain" name="Rain" required>
+
+        <label for="ffmc">FFMC:</label>
+        <input type="text" step="0.1" id="ffmc" name="FFMC" required>
+
+        <label for="dmc">DMC:</label>
+        <input type="text" step="0.1" id="dmc" name="DMC" required>
+
+        <label for="isi">ISI:</label>
+        <input type="text" step="0.1" id="isi" name="ISI" required>
+
+        <label for="classes">Classes:</label>
+        <input type="text" id="classes" name="Classes" required>
+
+        <label for="region">Region:</label>
+        <input type="text" id="region" name="Region" required>
+
+        <button type="submit">Submit</button>
+        <h2>
+            The prediction is {{result}}
+        </h2>
+    </form>
+    
+</body>
+</html>
