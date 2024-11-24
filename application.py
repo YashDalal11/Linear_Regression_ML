@@ -11,26 +11,14 @@ app = application
 ridge = pickle.load(open('models/ridge.pkl','rb'))
 scaler = pickle.load(open('models/scaler.pkl','rb'))
 
-@app.route('/')  # Define the route for the home page
-def index():
-    return render_template('index.html')
+# @app.route('/')  # Define the route for the home page
+# def index():
+#     return render_template('index.html')
 
-@app.route("/predictdata",methods=['GET','POST'])
+@app.route("/",methods=['GET','POST'])
 def predict_datapoint():
     if request.method=='POST':
         data = [float(value) for value in request.form.to_dict().values()]
-        print(data)
-    #     data = {
-    #     "Temperature": request.form['Temperature'],
-    #     "RH": request.form['RH'],
-    #     "Ws": request.form['Ws'],
-    #     "Rain": request.form['Rain'],
-    #     "FFMC": request.form['FFMC'],
-    #     "DMC": request.form['DMC'],
-    #     "ISI": request.form['ISI'],
-    #     "Classes": request.form['Classes'],
-    #     "Region": request.form['Region']
-    # }
         new_data_scaled = scaler.transform([data])
         result = ridge.predict(new_data_scaled)
         print(result)
